@@ -8,9 +8,20 @@ use Illuminate\Http\Request;
 
 class ProyekController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $proyeks = Proyek::latest()->paginate(10);
+        $query = Proyek::query();
+    
+        if ($request->filled('search')) {
+            $query->where('nama', 'like', '%' . $request->search . '%');
+        }
+    
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+    
+        $proyeks = $query->latest()->paginate(10);
+    
         return view('admin.proyek.index', compact('proyeks'));
     }
 
