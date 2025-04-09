@@ -22,44 +22,78 @@
 
     <div class="flex min-h-screen">
 
-        {{-- Sidebar --}}
-        <aside class="w-64 bg-white shadow-md p-6 hidden md:block sticky top-0 h-screen">
-            <div class="mb-10 text-center">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="mx-auto w-32 mb-2">
-                <h2 class="text-xl font-bold text-blue-600">PropertiKu</h2>
+    {{-- Sidebar --}}
+    <aside class="w-64 bg-white shadow-md p-6 hidden md:block sticky top-0 h-screen">
+        <div class="mb-10 text-center">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="mx-auto w-32 mb-2">
+            <h2 class="text-xl font-bold text-blue-600">PropertiKu</h2>
+        </div>
+
+        <nav class="space-y-4 text-sm">
+            {{-- Dashboard --}}
+            <a href="{{ route('admin.dashboard') }}"
+            class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition 
+            {{ request()->routeIs('admin.dashboard') ? 'bg-blue-100 text-blue-600 font-semibold' : '' }}">
+                <i class="fa-solid fa-gauge-high w-5"></i> Dashboard
+            </a>
+
+            {{-- Data Proyek Dropdown --}}
+            <div x-data="{ open: false }" class="space-y-1">
+                <button @click="open = !open"
+                    class="flex items-center justify-between w-full px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition focus:outline-none font-medium">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group w-5"></i> Data Proyek
+                    </span>
+                    <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid text-xs transition duration-200"></i>
+                </button>
+
+                <div x-show="open" x-transition class="ml-8 space-y-2">
+                    <a href="{{ route('admin.proyek.index') }}"
+                    class="flex items-center gap-2 px-3 py-2 rounded text-gray-600 hover:bg-blue-100 hover:text-blue-700 transition">
+                        <i class="fa-solid fa-list w-4"></i> List Proyek
+                    </a>
+                    <a href="{{ route('admin.proyek.create') }}"
+                    class="flex items-center gap-2 px-3 py-2 rounded text-gray-600 hover:bg-blue-100 hover:text-blue-700 transition">
+                        <i class="fa-solid fa-plus w-4"></i> Tambah Proyek
+                    </a>
+                </div>
             </div>
-            <nav class="space-y-4">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition {{ request()->routeIs('admin.dashboard') ? 'bg-blue-100 text-blue-600 font-semibold' : '' }}">
-                    <i class="fa-solid fa-gauge-high w-5"></i> Dashboard
-                </a>
-                <div x-data="{ open: false }" class="space-y-1">
-                    <button @click="open = !open"
-                        class="flex items-center justify-between w-full px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition focus:outline-none">
-                        <span class="flex items-center gap-3">
-                            <i class="fa-solid fa-layer-group w-5"></i> Data Proyek
-                        </span>
-                        <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid transition-transform duration-300"></i>
-                    </button>
-                    <div x-show="open" x-transition class="ml-8 space-y-2">
-                        <a href="{{ route('admin.proyek.index') }}" class="block px-3 py-2 text-sm text-gray-600 rounded hover:bg-blue-100 hover:text-blue-700 transition">
-                            <i class="fa-solid fa-list mr-2 w-4"></i> List Proyek
-                        </a>
-                        <a href="{{ route('admin.proyek.create') }}" class="block px-3 py-2 text-sm text-gray-600 rounded hover:bg-blue-100 hover:text-blue-700 transition">
-                            <i class="fa-solid fa-plus mr-2 w-4"></i> Tambah Proyek
-                        </a>
-                    </div>
-                </div>                
-                <a href="{{ route('admin.user.index')}}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
-                    <i class="fa-solid fa-users-gear w-5"></i> Manajemen Pengguna
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
-                    <i class="fa-solid fa-comments w-5"></i> Testimoni
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
-                    <i class="fa-solid fa-gear w-5"></i> Pengaturan
-                </a>
-            </nav>
-        </aside>
+
+            {{-- Manajemen Pengguna Dropdown --}}
+            <div x-data="{ openUser: false }" class="space-y-1">
+                <button @click="openUser = !openUser"
+                    class="flex items-center justify-between w-full px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition font-medium text-sm">
+                    <span class="flex items-center gap-3">
+                        <i class="fa-solid fa-users-gear w-5"></i> Pengguna
+                    </span>
+                    <i :class="openUser ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid text-xs transition duration-200"></i>
+                </button>
+
+                <div x-show="openUser" x-transition class="ml-8 space-y-2">
+                    <a href="{{ route('admin.user.index') }}"
+                        class="flex items-center gap-2 px-3 py-2 rounded text-sm text-gray-600 hover:bg-blue-100 hover:text-blue-700 transition">
+                        <i class="fa-solid fa-list w-4"></i> Daftar Pengguna
+                    </a>
+                    <a href="{{ route('admin.user.create') }}"
+                        class="flex items-center gap-2 px-3 py-2 rounded text-sm text-gray-600 hover:bg-blue-100 hover:text-blue-700 transition">
+                        <i class="fa-solid fa-user-plus w-4"></i> Tambah Pengguna
+                    </a>
+                </div>
+            </div>
+
+            {{-- Testimoni --}}
+            <a href="#"
+            class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
+                <i class="fa-solid fa-comments w-5"></i> Testimoni
+            </a>
+
+            {{-- Pengaturan --}}
+            <a href="#"
+            class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
+                <i class="fa-solid fa-gear w-5"></i> Pengaturan
+            </a>
+        </nav>
+    </aside>
 
         {{-- Main Content --}}
         <div class="flex-1 flex flex-col">
