@@ -35,8 +35,8 @@
         <div class="bg-white rounded-2xl p-8 shadow border border-gray-100">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-xl font-bold text-gray-700">Proyek Terbaru</h2>
-                <a href="{{ url('/admin/proyek/create') }}"
-                   class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">
+                <a href="{{ route('admin.proyek.create') }}"
+                    class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">
                     <i class="fa-solid fa-plus"></i> Tambah Proyek
                 </a>
             </div>
@@ -47,29 +47,31 @@
                         <tr class="text-left text-gray-600 border-b">
                             <th class="py-2">Nama Proyek</th>
                             <th class="py-2">Lokasi</th>
-                            <th class="py-2">Unit</th>
+                            <th class="py-2">Jumlah Unit</th>
                             <th class="py-2">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="py-2">Properti Harmoni</td>
-                            <td class="py-2">Jakarta Selatan</td>
-                            <td class="py-2">32</td>
-                            <td class="py-2"><span class="text-green-600 font-semibold">Aktif</span></td>
-                        </tr>
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="py-2">Green Village</td>
-                            <td class="py-2">Depok</td>
-                            <td class="py-2">18</td>
-                            <td class="py-2"><span class="text-yellow-600 font-semibold">Pending</span></td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="py-2">Citra Permata</td>
-                            <td class="py-2">Bogor</td>
-                            <td class="py-2">50</td>
-                            <td class="py-2"><span class="text-green-600 font-semibold">Aktif</span></td>
-                        </tr>
+                        @forelse ($proyekTerbaru as $proyek)
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-2">{{ $proyek->nama }}</td>
+                                <td class="py-2">{{ $proyek->lokasi }}</td>
+                                <td class="py-2">{{ $proyek->units_count }}</td>
+                                <td class="py-2">
+                                    @if ($proyek->status === 'aktif')
+                                        <span class="text-green-600 font-semibold capitalize">{{ $proyek->status }}</span>
+                                    @elseif ($proyek->status === 'pending')
+                                        <span class="text-yellow-600 font-semibold capitalize">{{ $proyek->status }}</span>
+                                    @else
+                                        <span class="text-gray-600 font-semibold capitalize">{{ $proyek->status }}</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="py-4 text-center text-gray-500">Belum ada proyek terbaru.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

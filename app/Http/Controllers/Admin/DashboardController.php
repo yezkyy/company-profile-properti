@@ -7,8 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\Unit;
 use Carbon\Carbon;
 
+use App\Models\Proyek;
+
 class DashboardController extends Controller
 {
+    public function index()
+    {
+        $proyekTerbaru = Proyek::withCount('units')
+                        ->latest()
+                        ->take(5)
+                        ->get();
+    
+        return view('admin.dashboard', compact('proyekTerbaru'));
+    }
+
     public function getStatistikData()
     {
         $data = [];

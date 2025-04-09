@@ -32,7 +32,7 @@
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition {{ request()->routeIs('admin.dashboard') ? 'bg-blue-100 text-blue-600 font-semibold' : '' }}">
                     <i class="fa-solid fa-gauge-high w-5"></i> Dashboard
                 </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
+                <a href="{{ route('admin.proyek.index')}}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
                     <i class="fa-solid fa-layer-group w-5"></i> Data Proyek
                 </a>
                 <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
