@@ -28,6 +28,16 @@
         </div>
 
         <div class="mb-4">
+            <label for="jumlah_unit" class="block text-sm font-medium text-gray-600">Jumlah Unit</label>
+            <input type="number" name="jumlah_unit" id="jumlah_unit"
+                value="{{ old('jumlah_unit') }}"
+                class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
+            @error('jumlah_unit')
+                <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+            @enderror
+        </div>        
+
+        <div class="mb-4">
             <label for="status" class="block text-sm font-medium text-gray-600">Status</label>
             <select name="status" id="status"
                 class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
