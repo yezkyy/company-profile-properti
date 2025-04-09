@@ -49,7 +49,7 @@
                         </a>
                     </div>
                 </div>                
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
+                <a href="{{ route('admin.user.index')}}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
                     <i class="fa-solid fa-users-gear w-5"></i> Manajemen Pengguna
                 </a>
                 <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
