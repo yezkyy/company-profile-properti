@@ -32,9 +32,23 @@
                 <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition {{ request()->routeIs('admin.dashboard') ? 'bg-blue-100 text-blue-600 font-semibold' : '' }}">
                     <i class="fa-solid fa-gauge-high w-5"></i> Dashboard
                 </a>
-                <a href="{{ route('admin.proyek.index')}}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
-                    <i class="fa-solid fa-layer-group w-5"></i> Data Proyek
-                </a>
+                <div x-data="{ open: false }" class="space-y-1">
+                    <button @click="open = !open"
+                        class="flex items-center justify-between w-full px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition focus:outline-none">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-layer-group w-5"></i> Data Proyek
+                        </span>
+                        <i :class="open ? 'fa-chevron-up' : 'fa-chevron-down'" class="fa-solid transition-transform duration-300"></i>
+                    </button>
+                    <div x-show="open" x-transition class="ml-8 space-y-2">
+                        <a href="{{ route('admin.proyek.index') }}" class="block px-3 py-2 text-sm text-gray-600 rounded hover:bg-blue-100 hover:text-blue-700 transition">
+                            <i class="fa-solid fa-list mr-2 w-4"></i> List Proyek
+                        </a>
+                        <a href="{{ route('admin.proyek.create') }}" class="block px-3 py-2 text-sm text-gray-600 rounded hover:bg-blue-100 hover:text-blue-700 transition">
+                            <i class="fa-solid fa-plus mr-2 w-4"></i> Tambah Proyek
+                        </a>
+                    </div>
+                </div>                
                 <a href="#" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 hover:text-blue-600 transition">
                     <i class="fa-solid fa-users-gear w-5"></i> Manajemen Pengguna
                 </a>

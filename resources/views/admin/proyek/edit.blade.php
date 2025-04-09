@@ -10,7 +10,7 @@
 
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-600">Nama Proyek</label>
-            <input type="text" name="nama_proyek" value="{{ old('nama_proyek', $proyek->nama_proyek) }}"
+            <input type="text" name="nama_proyek" value="{{ old('nama_proyek', $proyek->nama) }}"
                    class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
         </div>
 
@@ -18,6 +18,12 @@
             <label class="block text-sm font-medium text-gray-600">Lokasi</label>
             <input type="text" name="lokasi" value="{{ old('lokasi', $proyek->lokasi) }}"
                    class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-600">Jumlah Unit</label>
+            <input type="number" name="jumlah_unit" value="{{ old('jumlah_unit', $proyek->jumlah_unit) }}"
+                   class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" min="0">
         </div>
 
         <div class="mb-4">

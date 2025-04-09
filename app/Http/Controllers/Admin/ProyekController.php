@@ -19,15 +19,22 @@ class ProyekController extends Controller
         return view('admin.proyek.create');
     }
 
+    // store()
     public function store(Request $request)
     {
         $request->validate([
             'nama_proyek' => 'required|string|max:255',
             'lokasi' => 'required|string|max:255',
+            'jumlah_unit' => 'required|integer|min:0',
             'status' => 'required|in:Aktif,Pending,Nonaktif'
         ]);
 
-        Proyek::create($request->only('nama_proyek', 'lokasi', 'status'));
+        Proyek::create([
+            'nama' => $request->nama_proyek,
+            'lokasi' => $request->lokasi,
+            'jumlah_unit' => $request->jumlah_unit,
+            'status' => $request->status,
+        ]);
 
         return redirect()->route('admin.proyek.index')->with('success', 'Proyek berhasil ditambahkan.');
     }
@@ -38,21 +45,24 @@ class ProyekController extends Controller
         return view('admin.proyek.edit', compact('proyek'));
     }
     
+    // update()
     public function update(Request $request, $id)
     {
         $request->validate([
             'nama_proyek' => 'required|string|max:255',
             'lokasi' => 'required|string|max:255',
+            'jumlah_unit' => 'required|integer|min:0',
             'status' => 'required|in:Aktif,Pending,Nonaktif'
         ]);
-    
+
         $proyek = Proyek::findOrFail($id);
         $proyek->update([
-            'nama_proyek' => $request->nama_proyek,
+            'nama' => $request->nama_proyek,
             'lokasi' => $request->lokasi,
-            'status' => $request->status
+            'jumlah_unit' => $request->jumlah_unit,
+            'status' => $request->status,
         ]);
-    
+
         return redirect()->route('admin.proyek.index')->with('success', 'Proyek berhasil diperbarui.');
     }
     

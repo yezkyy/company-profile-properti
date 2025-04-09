@@ -24,6 +24,7 @@
                     <th class="py-3 px-4">Lokasi</th>
                     <th class="py-3 px-4">Jumlah Unit</th>
                     <th class="py-3 px-4">Tanggal Dibuat</th>
+                    <th class="py-3 px-4">Status</th>
                     <th class="py-3 px-4 text-center">Aksi</th>
                 </tr>
             </thead>
@@ -32,8 +33,14 @@
                     <tr class="hover:bg-gray-50 transition">
                         <td class="py-3 px-4 font-medium">{{ $proyek->nama }}</td>
                         <td class="py-3 px-4">{{ $proyek->lokasi }}</td>
-                        <td class="py-3 px-4">{{ $proyek->units_count }}</td>
+                        <td class="py-3 px-4">{{ $proyek->jumlah_unit }}</td>
                         <td class="py-3 px-4">{{ $proyek->created_at->format('d M Y') }}</td>
+                        <td class="py-3 px-4">
+                            <span class="inline-block px-2 py-1 text-xs rounded-full 
+                                {{ $proyek->status === 'Aktif' ? 'bg-green-100 text-green-800' : ($proyek->status === 'Pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800') }}">
+                                {{ $proyek->status }}
+                            </span>
+                        </td>
                         <td class="py-3 px-4 text-center">
                             <div class="flex justify-center items-center gap-3">
                                 <a href="{{ route('admin.proyek.edit', $proyek->id) }}"
