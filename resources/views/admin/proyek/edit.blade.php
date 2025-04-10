@@ -4,7 +4,7 @@
 <div class="bg-white rounded-2xl p-8 shadow border border-gray-100 max-w-xl mx-auto">
     <h2 class="text-xl font-bold mb-6 text-gray-700">Edit Proyek</h2>
 
-    <form action="{{ route('admin.proyek.update', $proyek->id) }} method="POST" enctype="multipart/form-data">">
+    <form action="{{ route('admin.proyek.update', $proyek->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
