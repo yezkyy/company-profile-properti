@@ -18,6 +18,21 @@
     {{-- Livewire Styles --}}
     @livewireStyles
 </head>   
+@if (session('success') || session('error'))
+    <div 
+        x-data="{ show: true }" 
+        x-init="setTimeout(() => show = false, 3000)" 
+        x-show="show" 
+        x-transition 
+        class="fixed top-5 right-5 z-50 w-full max-w-sm">
+        <div class="p-4 rounded-lg shadow-lg text-white 
+            {{ session('success') ? 'bg-green-500' : 'bg-red-500' }}">
+            <p class="text-sm font-medium">
+                {{ session('success') ?? session('error') }}
+            </p>
+        </div>
+    </div>
+@endif
 <body class="bg-gray-100 text-gray-800 font-sans antialiased">
 
     <div class="flex min-h-screen">
@@ -124,5 +139,6 @@
     @livewireScripts
 
     @stack('scripts')
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>
