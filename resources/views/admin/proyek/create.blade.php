@@ -4,7 +4,7 @@
 <div class="bg-white rounded-2xl p-8 shadow border border-gray-100 max-w-xl mx-auto">
     <h2 class="text-xl font-bold mb-6 text-gray-700">Tambah Proyek Baru</h2>
 
-    <form method="POST" action="{{ route('admin.proyek.store') }}">
+    <form action="{{ route('admin.proyek.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-4">
