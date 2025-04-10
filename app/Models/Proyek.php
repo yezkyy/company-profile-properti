@@ -9,7 +9,7 @@ class Proyek extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'lokasi', 'jumlah_unit', 'status'];
+    protected $fillable = ['nama', 'lokasi', 'jumlah_unit', 'status', 'gambar'];
 
     public function units()
     {

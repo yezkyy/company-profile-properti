@@ -15,6 +15,11 @@
         </div>
 
         <div class="mb-4">
+            <label for="gambar" class="block font-medium text-gray-700 mb-2">Gambar Proyek</label>
+            <input type="file" name="gambar" class="border rounded w-full p-2">
+        </div>
+
+        <div class="mb-4">
             <label class="block text-sm font-medium text-gray-600">Lokasi</label>
             <input type="text" name="lokasi" value="{{ old('lokasi', $proyek->lokasi) }}"
                    class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300">

@@ -91,7 +91,7 @@
             <div class="grid md:grid-cols-3 gap-8">
                 @forelse($proyeks as $proyek)
                     <div class="bg-blue-100 rounded-xl overflow-hidden shadow hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="{{ $loop->index * 200 }}">
-                        <img src="https://source.unsplash.com/400x300/?realestate,home,{{ $loop->iteration }}" alt="{{ $proyek->nama }}" class="w-full h-52 object-cover">
+                        <img src="{{ asset('storage/' . $proyek->gambar) }}" alt="{{ $proyek->nama }}" class="w-full h-52 object-cover">
                         <div class="p-4">
                             <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $proyek->nama }}</h3>
                             <p class="text-gray-600 text-sm">{{ $proyek->lokasi }}</p>
