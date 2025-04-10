@@ -5,10 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProyekController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Authentication Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

@@ -89,15 +89,19 @@
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Proyek Terbaru</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                @foreach(range(1, 3) as $i)
+                @forelse($proyeks as $proyek)
                     <div class="bg-blue-100 rounded-xl overflow-hidden shadow hover:shadow-lg transition" data-aos="flip-left" data-aos-delay="{{ $loop->index * 200 }}">
-                        <img src="https://source.unsplash.com/400x300/?realestate,home,{{ $i }}" alt="Proyek {{ $i }}" class="w-full h-52 object-cover">
+                        <img src="https://source.unsplash.com/400x300/?realestate,home,{{ $loop->iteration }}" alt="{{ $proyek->nama }}" class="w-full h-52 object-cover">
                         <div class="p-4">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Perumahan Elite {{ $i }}</h3>
-                            <p class="text-gray-600 text-sm">Jl. Strategis No.{{ $i }}, Kota Besar</p>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $proyek->nama }}</h3>
+                            <p class="text-gray-600 text-sm">{{ $proyek->lokasi }}</p>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-span-3 text-center text-gray-500">
+                        Belum ada proyek yang tersedia.
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
