@@ -18,7 +18,6 @@
     {{-- Livewire Styles --}}
     @livewireStyles
 </head>   
-@include('components.toast')
 <body class="bg-gray-100 text-gray-800 font-sans antialiased">
 
     <div class="flex min-h-screen">
@@ -118,6 +117,8 @@
                 @yield('content')
             </main>
 
+            {{-- Toast --}}
+            @include('components.toast')
         </div>
     </div>
     
